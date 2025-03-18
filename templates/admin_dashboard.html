@@ -1,0 +1,100 @@
+{% extends "layout.html" %}
+{% block title %}Admin Dashboard{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <div class="row mb-4">
+        <div class="col">
+            <h1 class="text-center text-primary mb-4">Admin Dashboard</h1>
+            <p class="text-center text-muted">Manage your quiz application from this central dashboard</p>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <!-- All cards in one row -->
+        
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <i class="fas fa-book fa-3x text-primary mb-3"></i>
+                    <h5 class="card-title">Add Subject</h5>
+                    <p class="card-text">Create new subjects for your quizzes</p>
+                    <form action='/add_chapter' method="GET">
+                        <button type="submit" class="btn btn-success w-100"><i class="fas fa-plus me-2"></i>Add Subject</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <i class="fas fa-bookmark fa-3x text-success mb-3"></i>
+                    <h5 class="card-title">Add Chapter</h5>
+                    <p class="card-text">Organize subjects into chapters</p>
+                    <form action='/add_chapter' method="GET">
+                        <button type="submit" class="btn btn-success w-100"><i class="fas fa-plus me-2"></i>Add Chapter</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <i class="fas fa-question-circle fa-3x text-info mb-3"></i>
+                    <h5 class="card-title">Add Questions</h5>
+                    <p class="card-text">Create questions for your quizzes</p>
+                    <form action='/add_question' method="GET">
+                        <button type="submit" class="btn btn-info w-100 text-white"><i class="fas fa-plus me-2"></i>Add Question</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Second Row with remaining 3 cards -->
+    <div class="row g-4 mt-4">
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <i class="fas fa-list fa-3x text-warning mb-3"></i>
+                    <h5 class="card-title">View Quizzes</h5>
+                    <p class="card-text">Browse all available quizzes</p>
+                    <form action='/view_quiz' method="GET">
+                        <button type="submit" class="btn btn-warning w-100"><i class="fas fa-eye me-2"></i>View Quizzes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <i class="fas fa-edit fa-3x text-danger mb-3"></i>
+                    <h5 class="card-title">Edit Quiz</h5>
+                    <p class="card-text">Modify existing quiz content</p>
+                    <form action='/edit_quiz' method="GET">
+                        <button type="submit" class="btn btn-danger w-100"><i class="fas fa-pencil-alt me-2"></i>Edit Quiz</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body text-center">
+                    <i class="fas fa-history fa-3x text-secondary mb-3"></i>
+                    <h5 class="card-title">History</h5>
+                    <p class="card-text">View quiz attempt history</p>
+                    <form action='/history' method="GET">
+                        <button type="submit" class="btn btn-secondary w-100"><i class="fas fa-clock me-2"></i>View History</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Font Awesome CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+{% endblock %}

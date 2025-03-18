@@ -1,0 +1,56 @@
+{% extends 'layout.html' %}
+    
+{% block title %}Dashboard{% endblock %}
+    
+{% block content %}
+<div class="text-center mb-4">
+    <h2 class="welcome-text">Welcome, {{ user.name }}!</h2>
+</div>
+
+<div class="container d-flex align-items-center justify-content-center" style="min-height: 100vh; background-color: #f0f9ff;">
+    <div class="row">
+        <div class="col-12 col-md-4 mb-4">
+            <div class="card h-100" style="min-height:350px;">
+                <div class="card-body d-flex flex-column text-center">
+                    <h3 class="card-heading">View Subjects & Chapters</h3>
+                    <p class="card-text flex-grow-1">
+                        Explore our comprehensive collection of subjects and their detailed chapters. 
+                        Find the perfect topic to enhance your knowledge and prepare for your next quiz.
+                    </p>
+                    <form action="/available_quizzes" method="GET">
+                        <button type="submit" class="btn btn-primary w-75">View Subjects</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 mb-4">
+            <div class="card h-100" style="min-height:350px;">
+                <div class="card-body d-flex flex-column text-center">
+                    <h3 class="card-heading">Start Quiz</h3>
+                    <p class="card-text flex-grow-1">
+                        Ready to challenge yourself? Start a new quiz and test your knowledge.
+                        Choose from various subjects and difficulty levels to match your expertise.
+                    </p>
+                    <form action="/start_quiz" method="GET">
+                        <button type="submit" class="btn btn-success w-75">Begin Quiz</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 mb-4">
+            <div class="card h-100" style="min-height:350px;">
+                <div class="card-body d-flex flex-column text-center">
+                    <h3 class="card-heading">Previous Scores</h3>
+                    <p class="card-text flex-grow-1">
+                        Track your progress by reviewing your past quiz performances.
+                        Analyze your scores and identify areas for improvement.
+                    </p>
+                    <form action="/user_history" method="GET">
+                        <button type="submit" class="btn btn-info w-75">View History</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

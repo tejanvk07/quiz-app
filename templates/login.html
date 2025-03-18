@@ -1,20 +1,49 @@
 {% extends "layout.html" %}
 {% block title %}Login{% endblock %}
 {% block content %}
-
+  {% if error %}
+    <div class="alert alert-success" role="alert">
+      {{ error }}
+    </div>
+  {% endif %}
+  {% if error1 %}
+    <div class="alert alert-danger" role="alert">
+      {{ error1 }}
+    </div>
+  {% endif %}
+  {% if error2 %}
+  <div style="justify-content: center; display: flex; align-items: center; ">
+    <h1>{{ error2 }}</h1>
+  </div>
+{% endif %}
   <div class="container mt-5">
-    <h2 class="mb-4">Login</h2>
-    <form action="/dashboard" method="post">
-      <div class="mb-3">
-        <label for="username" class="form-label">Username</label>
-        <input type="text" class="form-control" id="username" name="username" required>
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h2 class="mb-4 text-center">Login</h2>
+            <form method="POST" action="{{ url_for('login') }}">
+              <div class="mb-3">
+                <label for="role" class="form-label">Role</label>
+                <select class="form-select" id="role" name="role" required>
+                  <option value="user">User</option>
+                  <option value="admin">Admin</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+              </div>
+              <button type="submit" class="btn btn-primary w-100">Login</button>
+            </form>
+            <p class="mt-3 text-center">Don't have an account? <a href="/register">Register here</a></p>
+          </div>
+        </div>
       </div>
-      <div class="mb-3">
-        <label for="password" class="form-label">Password</label>
-        <input type="password" class="form-control" id="password" name="password" required>
-      </div>
-      <button type="submit" class="btn btn-primary">Login</button>
-    </form>
-    <p class="mt-3">Don't have an account? <a href="/register">Register here</a></p>
+    </div>
   </div>
 {% endblock %}
