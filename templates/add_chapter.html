@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+{% block title %}Add Chapter{% endblock %}
+{% block content %}
+<div class="container py-5">
+    <div class="row mb-4">
+        <div class="col">
+            <h1 class="text-center text-primary mb-4">Add Chapter</h1>
+            <p class="text-center text-muted">Organize subjects into chapters</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <form action="/add_chapter" method="POST">
+                        <div class="mb-3">
+                            <label for="subject" class="form-label">Subject</label>
+                            <select class="form-select" id="subject" name="subject" required>
+                                <option selected disabled>Select Subject</option>
+                                {% for subject in subjects %}
+                                <option value="{{ subject.id }}">{{ subject.subject }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="chapter" class="form-label">Chapter Name</label>
+                            <input type="text" class="form-control" id="chapter" name="chapter" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Add Chapter</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

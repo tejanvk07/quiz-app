@@ -1,6 +1,7 @@
 import sqlite3
 from flask import *
-
+db = sqlite3.connect('quizapp.db')
+db.row_factory = sqlite3.Row
 def connect_database():
     sql = sqlite3.connect('quizapp.db')
     sql.row_factory = sqlite3.Row

@@ -1,5 +1,5 @@
 from flask import *
-from database import *
+from models import *
 from werkzeug.security import *
 import os
 app = Flask(__name__)
@@ -11,6 +11,24 @@ def get_current_user():
         db = get_database()
         user_result = db.execute("SELECT * FROM users WHERE email = ?",[user]).fetchone()
     return user_result
+
+@app.route('/add_subject', methods=['POST', 'GET'])
+def add_subject():
+    user = get_current_user()
+    
+    if not user:
+        return redirect(url_for('login'))  # Redirect if user is not authenticated
+
+    if request.method == 'POST':
+        db = get_database()
+        subject = request.form.get('subject')  # Use .get() to avoid KeyError
+        if subject:  # Ensure subject is not empty
+            db.execute("INSERT INTO subjects (name) VALUES (?)", [subject])
+            db.commit()
+            return redirect(url_for('admin'))
+        return "Error: Subject name cannot be empty", 400  # Handle empty input
+
+    return render_template('add_subject.html', user=user)  # Always return something
 
 @app.teardown_appcontext
 def close_database(error):
@@ -69,6 +87,24 @@ def login():
             return render_template('login.html', error2='Please fill in all fields')
             
     return render_template('login.html')
+
+@app.route('/add_chapter',methods=['POST','GET'])
+def add_chapter():
+    user = get_current_user()
+    if not user:
+        return redirect(url_for('login'))
+    if request.method == 'POST':
+        db = get_database()
+        chapter = request.form.get('chapter')
+        subject = request.form.get('subject')
+        if chapter:
+            db.execute("INSERT INTO chapters (name,subject_id) VALUES (?,?)",[chapter,subject])
+            db.commit()
+            return redirect(url_for('admin'))
+        return "Error: Chapter name cannot be empty",400
+    db = get_database()
+    # subjects = db.execute("SELECT * FROM subjects").fetchall()
+    return render_template('add_chapter.html',user=user,subjects=subjects)
 
 @app.route('/register',methods=['POST','GET'])
 def register():

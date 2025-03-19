@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+    {% block title %}Add Subject{% endblock %}
+    {% block content %}
+    <div class="container py-5">
+        <div class="row mb-4">
+            <div class="col">
+                <h1 class="text-center text-primary mb-4">Add Subject</h1>
+                <p class="text-center text-muted">Create new subjects for your quizzes</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <form action="/add_subject" method="POST">
+                            <div class="mb-3">
+                                <label for="subject" class="form-label">Subject Name</label>
+                                <input type="text" class="form-control" id="subject" name="subject" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Add Subject</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endblock %}
